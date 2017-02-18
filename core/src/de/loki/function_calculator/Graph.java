@@ -1,7 +1,5 @@
 package de.loki.function_calculator;
 
-import com.badlogic.gdx.math.MathUtils;
-
 /**
  * Created by Loki on 18.02.2017.
  */
@@ -21,7 +19,7 @@ public class Graph {
         float x = -range;
 
         for(int i = 0; i<vertices.length; i++){
-            if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH);
+            if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.getViewportHeight()) + (FunctionCalculator.VIEWPORT_WIDTH-FunctionCalculator.getViewportHeight())/2;
             else{
                 vertices[i] = map((float) Math.pow(x, 2), -range, range, 0, FunctionCalculator.getViewportHeight());
                 x += range*2/(vertices.length/2);

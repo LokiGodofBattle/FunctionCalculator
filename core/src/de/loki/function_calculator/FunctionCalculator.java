@@ -56,8 +56,8 @@ public class FunctionCalculator extends ApplicationAdapter {
 		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 		shapeRenderer.setColor(Color.RED);
-		shapeRenderer.polyline(Graph.getGraph());
 		CoordinateSystem.draw(shapeRenderer);
+		shapeRenderer.polyline(Graph.getGraph());
 		shapeRenderer.end();
 	}
 

@@ -24,7 +24,7 @@ public class FunctionCalculator extends ApplicationAdapter {
 	@Override
 	public void create () {
 
-		FORMULAR = "f(x)=x^2";
+		FORMULAR = "2-3-3-2";
 
 		shapeRenderer = new ShapeRenderer();
 
@@ -44,6 +44,7 @@ public class FunctionCalculator extends ApplicationAdapter {
 		camera.position.set(VIEWPORT_WIDTH / 2f, VIEWPORT_WIDTH * aspect_ratio / 2f, 0);
 
 		Graph.init();
+		Input.read();
 
 	}
 

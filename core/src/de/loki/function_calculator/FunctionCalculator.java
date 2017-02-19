@@ -9,8 +9,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import javafx.scene.shape.Polyline;
-
 public class FunctionCalculator extends ApplicationAdapter {
 
 	private ShapeRenderer shapeRenderer;
@@ -24,7 +22,7 @@ public class FunctionCalculator extends ApplicationAdapter {
 	@Override
 	public void create () {
 
-		FORMULAR = "2-3-3-2";
+		FORMULAR = "+0|+1|+0|+0|10";
 
 		shapeRenderer = new ShapeRenderer();
 
@@ -44,7 +42,8 @@ public class FunctionCalculator extends ApplicationAdapter {
 		camera.position.set(VIEWPORT_WIDTH / 2f, VIEWPORT_WIDTH * aspect_ratio / 2f, 0);
 
 		Graph.init();
-		Input.read();
+		FunctionCalculatorInput.init();
+		FunctionCalculatorInput.read();
 
 	}
 
@@ -52,6 +51,8 @@ public class FunctionCalculator extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		FunctionCalculatorInput.render();
 
 		camera.update();
 		shapeRenderer.setProjectionMatrix(camera.combined);

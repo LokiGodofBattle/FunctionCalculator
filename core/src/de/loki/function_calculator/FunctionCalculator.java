@@ -45,6 +45,7 @@ public class FunctionCalculator extends ApplicationAdapter {
 
 		Graph.init();
 		FunctionCalculatorInput.init();
+		CoordinateSystem.init();
 		FunctionCalculatorInput.read();
 
 		Gdx.gl20.glLineWidth(5);

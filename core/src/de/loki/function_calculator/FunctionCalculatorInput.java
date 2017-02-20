@@ -14,15 +14,20 @@ public class FunctionCalculatorInput {
     }
 
     public static void read(){
-        Graph.a = Float.parseFloat(FunctionCalculator.FORMULAR.substring(0, 2));
-        Graph.b = Float.parseFloat(FunctionCalculator.FORMULAR.substring(3, 5));
-        Graph.c = Float.parseFloat(FunctionCalculator.FORMULAR.substring(6, 8));
-        Graph.d = Float.parseFloat(FunctionCalculator.FORMULAR.substring(9, 11));
-        Graph.range = Float.parseFloat(FunctionCalculator.FORMULAR.substring(12));
+
+        String[] text = FunctionCalculator.FORMULAR.split(" ");
+
+        Graph.a = Float.parseFloat(text[0]);
+        Graph.b = Float.parseFloat(text[1]);
+        Graph.c = Float.parseFloat(text[2]);
+        Graph.d = Float.parseFloat(text[3]);
+        if(text.length >= 5) Graph.range = Float.parseFloat(text[4]);
+        else Graph.range = 5;
+        if(text.length >= 6) FunctionCalculator.drawCurves = Boolean.parseBoolean(text[5]);
     }
 
     public static void render(){
-        if(Gdx.input.justTouched()) Gdx.input.getTextInput(listener, "Input", "", "a|b|c|d");
+        if(Gdx.input.justTouched()) Gdx.input.getTextInput(listener, "Input", "", "a b c d range");
     }
 
 }

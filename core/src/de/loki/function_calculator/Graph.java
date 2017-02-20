@@ -1,5 +1,7 @@
 package de.loki.function_calculator;
 
+import com.badlogic.gdx.Gdx;
+
 /**
  * Created by Loki on 18.02.2017.
  */
@@ -14,7 +16,7 @@ public class Graph {
 
     public static void init(){
         accuracy = 2;
-        range = 10;
+        range = 5;
 
         a = 0;
         b = 0;
@@ -28,9 +30,9 @@ public class Graph {
         float x = -range;
 
         for(int i = 0; i<vertices.length; i++){
-            if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.getViewportHeight()) + (FunctionCalculator.VIEWPORT_WIDTH-FunctionCalculator.getViewportHeight())/2;
+            if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH);
             else{
-                vertices[i] = map((float) (a*Math.pow(x, 3) + b*Math.pow(x, 2) +c*x + d), -range, range, 0, FunctionCalculator.getViewportHeight());
+                vertices[i] = map((float) (a*Math.pow(x, 3) + b*Math.pow(x, 2) +c*x + d), -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH)  + FunctionCalculator.getSizeDifference()/2;
                 x += range*2/(vertices.length/2);
              }
         }
@@ -38,8 +40,40 @@ public class Graph {
         return vertices;
     }
 
-    private static float map(float x, float a, float b, float c, float d){
-        return (x-a)/(b-a) * (d-c) + c;
+    public static float[] getGraphA1(){
+        float[] vertices = new float[FunctionCalculator.VIEWPORT_WIDTH/accuracy];
+
+        float x = -range;
+
+        for(int i = 0; i<vertices.length; i++){
+            if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH);
+            else{
+                vertices[i] = map((float) (a*3*Math.pow(x, 2) + b*2*x +c), -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH)  + FunctionCalculator.getSizeDifference()/2;
+                x += range*2/(vertices.length/2);
+            }
+        }
+
+        return vertices;
+    }
+
+    public static float[] getGraphA2(){
+        float[] vertices = new float[FunctionCalculator.VIEWPORT_WIDTH/accuracy];
+
+        float x = -range;
+
+        for(int i = 0; i<vertices.length; i++){
+            if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH);
+            else{
+                vertices[i] = map((a*6*x + b*2), -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH)  + FunctionCalculator.getSizeDifference()/2;
+                x += range*2/(vertices.length/2);
+            }
+        }
+
+        return vertices;
+    }
+
+    private static float map(float x1, float a1, float b1, float c1, float d1){
+        return (x1-a1)/(b1-a1) * (d1-c1) + c1;
     }
 
 }

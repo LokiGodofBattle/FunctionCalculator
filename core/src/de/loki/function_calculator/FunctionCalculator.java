@@ -18,11 +18,13 @@ public class FunctionCalculator extends ApplicationAdapter {
 	private static float aspect_ratio;
 	private static float scale;
 	public static String FORMULAR;
+	public static boolean drawCurves;
 	
 	@Override
 	public void create () {
 
-		FORMULAR = "+0|+1|+0|+0|10";
+		FORMULAR = "0 1 0 0 10";
+		drawCurves = true;
 
 		shapeRenderer = new ShapeRenderer();
 
@@ -45,11 +47,12 @@ public class FunctionCalculator extends ApplicationAdapter {
 		FunctionCalculatorInput.init();
 		FunctionCalculatorInput.read();
 
+		Gdx.gl20.glLineWidth(5);
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		FunctionCalculatorInput.render();
@@ -57,10 +60,22 @@ public class FunctionCalculator extends ApplicationAdapter {
 		camera.update();
 		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-		shapeRenderer.setColor(Color.RED);
+
 		CoordinateSystem.draw(shapeRenderer);
+
+		shapeRenderer.setColor(Color.RED);
 		shapeRenderer.polyline(Graph.getGraph());
+
+		shapeRenderer.setColor(Color.GREEN);
+		if(Graph.b != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA1());
+
+		shapeRenderer.setColor(Color.BLUE);
+		if(Graph.a != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA2());
 		shapeRenderer.end();
+	}
+
+	public static float getSizeDifference(){
+		return getViewportHeight() - VIEWPORT_WIDTH;
 	}
 
 	public static float getViewportHeight(){

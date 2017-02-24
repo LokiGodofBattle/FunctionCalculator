@@ -2,6 +2,9 @@ package de.loki.function_calculator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 /**
@@ -22,7 +25,7 @@ public class CoordinateSystem {
         shapeRenderer.setColor(Color.BLACK);
 
         for(int i = 0; i<Graph.range*2 - 1; i++){
-            shapeRenderer.line((i+1)*(FunctionCalculator.VIEWPORT_WIDTH/(Graph.range*2)), 0, (i+1)*(FunctionCalculator.VIEWPORT_WIDTH/(Graph.range*2)), FunctionCalculator.getViewportHeight());
+            shapeRenderer.line((i + 1) * (FunctionCalculator.VIEWPORT_WIDTH / (Graph.range * 2)), 0, (i + 1) * (FunctionCalculator.VIEWPORT_WIDTH / (Graph.range * 2)), FunctionCalculator.getViewportHeight());
         }
 
         for(int i = 0; i<Graph.range*2 - 1; i++){
@@ -52,8 +55,33 @@ public class CoordinateSystem {
         }
 
         for(int i = 0; i<Graph.range*2-1; i++){
-            shapeRenderer.line(FunctionCalculator.VIEWPORT_WIDTH/2 - markerWidth/2, FunctionCalculator.getViewportHeight()/2 + (i + 1)*(FunctionCalculator.VIEWPORT_WIDTH/(Graph.range*2)),
-                    FunctionCalculator.VIEWPORT_WIDTH/2 + markerWidth/2, FunctionCalculator.getViewportHeight()/2 + (i + 1)*(FunctionCalculator.VIEWPORT_WIDTH/(Graph.range*2)));
+            shapeRenderer.line(FunctionCalculator.VIEWPORT_WIDTH / 2 - markerWidth / 2, FunctionCalculator.getViewportHeight() / 2 + (i + 1) * (FunctionCalculator.VIEWPORT_WIDTH / (Graph.range * 2)),
+                    FunctionCalculator.VIEWPORT_WIDTH / 2 + markerWidth / 2, FunctionCalculator.getViewportHeight() / 2 + (i + 1) * (FunctionCalculator.VIEWPORT_WIDTH / (Graph.range * 2)));
+        }
+
+    }
+
+    public static void drawText(SpriteBatch batch, BitmapFont font, GlyphLayout glyphLayout){
+        float x = -Graph.range;
+        float y = 0;
+        float z = 0;
+
+        for(int i = 0; i<Graph.range*2; i++) {
+            glyphLayout.setText(font, "" + (int) x);
+            if(x != 0)font.draw(batch, "" + (int) x, i * (FunctionCalculator.VIEWPORT_WIDTH / (Graph.range * 2)), FunctionCalculator.getViewportHeight()/2 - 50);
+            x++;
+        }
+
+        for(int i = 0; i<Graph.range*2; i++){
+            glyphLayout.setText(font, "" + (int) y);
+            if(y != 0)font.draw(batch, "" + (int) y, FunctionCalculator.VIEWPORT_WIDTH/2 -glyphLayout.width -50, FunctionCalculator.getViewportHeight()/2 - i*(FunctionCalculator.VIEWPORT_WIDTH/(Graph.range*2)));
+            y--;
+        }
+
+        for(int i = 0; i<Graph.range*2; i++){
+            glyphLayout.setText(font, "" + (int) z);
+            if(z != 0)font.draw(batch, "" + (int) z, FunctionCalculator.VIEWPORT_WIDTH/2 -glyphLayout.width -50, FunctionCalculator.getViewportHeight() / 2 + i * (FunctionCalculator.VIEWPORT_WIDTH / (Graph.range * 2)));
+            z++;
         }
 
     }

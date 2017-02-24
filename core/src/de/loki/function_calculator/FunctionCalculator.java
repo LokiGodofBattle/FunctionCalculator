@@ -5,6 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -19,6 +23,11 @@ public class FunctionCalculator extends ApplicationAdapter {
 	private static float scale;
 	public static String FORMULAR;
 	public static boolean drawCurves;
+	private static BitmapFont font;
+	private static FreeTypeFontGenerator ftfGenerator;
+	private static FreeTypeFontGenerator.FreeTypeFontParameter ftfParameter;
+	private static SpriteBatch batch;
+	private static GlyphLayout glyphLayout;
 	
 	@Override
 	public void create () {
@@ -26,7 +35,18 @@ public class FunctionCalculator extends ApplicationAdapter {
 		FORMULAR = "0 1 0 0 10";
 		drawCurves = true;
 
+		ftfGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Calibri.ttf"));
+		ftfParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+		ftfParameter.size = 75;
+		ftfParameter.color = Color.BLACK;
+		ftfParameter.characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.!'()>?:-+";
+
+		font = ftfGenerator.generateFont(ftfParameter);
+
+		glyphLayout = new GlyphLayout();
+
 		shapeRenderer = new ShapeRenderer();
+		batch = new SpriteBatch();
 
 		//Ausrechnen des Größenverhältnisses des Geräts
 		aspect_ratio = Gdx.graphics.getHeight()/(float)Gdx.graphics.getWidth();
@@ -73,6 +93,11 @@ public class FunctionCalculator extends ApplicationAdapter {
 		shapeRenderer.setColor(Color.BLUE);
 		if(Graph.a != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA2());
 		shapeRenderer.end();
+
+		batch.begin();
+		batch.setProjectionMatrix(camera.combined);
+		CoordinateSystem.drawText(batch, font, glyphLayout);
+		batch.end();
 	}
 
 	public static float getSizeDifference(){

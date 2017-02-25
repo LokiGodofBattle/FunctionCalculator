@@ -33,7 +33,7 @@ public class FunctionCalculator extends ApplicationAdapter {
 	public void create () {
 
 		//Variable die ausgelesen wird -  a b c d e range complete?
-		FORMULAR = "0 0 1 0 0 10";
+		FORMULAR = "0 1 0 0 10";
 		drawCurves = true;
 
 		ftfGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Calibri.ttf"));
@@ -65,10 +65,13 @@ public class FunctionCalculator extends ApplicationAdapter {
 		camera.position.set(VIEWPORT_WIDTH / 2f, VIEWPORT_WIDTH * aspect_ratio / 2f, 0);
 
 		//Initialisierungen
+		Calculation.init();
 		Graph.init();
 		FunctionCalculatorInput.init();
 		CoordinateSystem.init();
 		FunctionCalculatorInput.read();
+
+		Calculation.calculateZeropoints();
 
 		Gdx.gl20.glLineWidth(5);
 	}
@@ -93,11 +96,11 @@ public class FunctionCalculator extends ApplicationAdapter {
 
 		shapeRenderer.setColor(Color.GREEN);
 		//Abfrage zum vermeiden von Funktionen ohne x
-		if(Graph.c != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA1());
+		if(Graph.b != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA1());
 
 		shapeRenderer.setColor(Color.BLUE);
 		//Abfrage zum vermeiden von Funktionen ohne x
-		if(Graph.b != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA2());
+		if(Graph.c != 0 && Graph.b != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA2());
 		shapeRenderer.end();
 
 		batch.begin();

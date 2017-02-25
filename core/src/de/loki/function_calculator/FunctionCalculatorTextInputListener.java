@@ -11,6 +11,7 @@ public class FunctionCalculatorTextInputListener implements Input.TextInputListe
         //Eingabe des Textes
         FunctionCalculator.FORMULAR = text;
         FunctionCalculatorInput.read();
+        Calculation.calculateZeropoints();
     }
 
     @Override

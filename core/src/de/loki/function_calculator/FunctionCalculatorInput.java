@@ -22,10 +22,9 @@ public class FunctionCalculatorInput {
         Graph.b = Float.parseFloat(text[1]);
         Graph.c = Float.parseFloat(text[2]);
         Graph.d = Float.parseFloat(text[3]);
-        Graph.e = Float.parseFloat(text[4]);
-        if(text.length >= 6) Graph.range = Float.parseFloat(text[5]);
+        if(text.length >= 5) Graph.range = Float.parseFloat(text[4]);
         else Graph.range = 5;
-        if(text.length >= 7) FunctionCalculator.drawCurves = Boolean.parseBoolean(text[6]);
+        if(text.length >= 6) FunctionCalculator.drawCurves = Boolean.parseBoolean(text[5]);
     }
 
     //Listener Abfrage

@@ -1,7 +1,5 @@
 package de.loki.function_calculator;
 
-import com.badlogic.gdx.Gdx;
-
 /**
  * Created by Loki on 18.02.2017.
  */
@@ -29,6 +27,7 @@ public class Graph {
 
         float x = -range;
 
+        //setzen der Vertices des Graphen, x, y in einem 1-Dimensionalen Array
         for(int i = 0; i<vertices.length; i++){
             if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH);
             else{
@@ -40,6 +39,7 @@ public class Graph {
         return vertices;
     }
 
+    //setzen der Vertices des Graphen der 1. Ableitung, x, y in einem 1-Dimensionalen Array
     public static float[] getGraphA1(){
         float[] vertices = new float[FunctionCalculator.VIEWPORT_WIDTH/accuracy];
 
@@ -56,6 +56,7 @@ public class Graph {
         return vertices;
     }
 
+    //setzen der Vertices des Graphen der 2. Ableitung, x, y in einem 1-Dimensionalen Array
     public static float[] getGraphA2(){
         float[] vertices = new float[FunctionCalculator.VIEWPORT_WIDTH/accuracy];
 
@@ -72,6 +73,7 @@ public class Graph {
         return vertices;
     }
 
+    //Funktion zum Mappen der Werte
     private static float map(float x1, float a1, float b1, float c1, float d1){
         return (x1-a1)/(b1-a1) * (d1-c1) + c1;
     }

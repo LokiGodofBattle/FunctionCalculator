@@ -32,7 +32,8 @@ public class FunctionCalculator extends ApplicationAdapter {
 	@Override
 	public void create () {
 
-		FORMULAR = "0 1 0 0 10";
+		//Variable die ausgelesen wird -  a b c d range complete?
+		FORMULAR = "0 1 0 0 10 true";
 		drawCurves = true;
 
 		ftfGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Calibri.ttf"));
@@ -63,6 +64,7 @@ public class FunctionCalculator extends ApplicationAdapter {
 		//Kamera zentrieren
 		camera.position.set(VIEWPORT_WIDTH / 2f, VIEWPORT_WIDTH * aspect_ratio / 2f, 0);
 
+		//Initialisierungen
 		Graph.init();
 		FunctionCalculatorInput.init();
 		CoordinateSystem.init();
@@ -76,12 +78,14 @@ public class FunctionCalculator extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+		//Rendern
 		FunctionCalculatorInput.render();
 
 		camera.update();
 		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 
+		//Zeichnen
 		CoordinateSystem.draw(shapeRenderer);
 
 		shapeRenderer.setColor(Color.RED);

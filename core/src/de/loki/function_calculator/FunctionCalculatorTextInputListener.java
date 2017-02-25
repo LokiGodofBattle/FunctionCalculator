@@ -8,6 +8,7 @@ import com.badlogic.gdx.Input;
 public class FunctionCalculatorTextInputListener implements Input.TextInputListener {
     @Override
     public void input(String text) {
+        //Eingabe des Textes
         FunctionCalculator.FORMULAR = text;
         FunctionCalculatorInput.read();
     }

@@ -13,6 +13,7 @@ public class FunctionCalculatorInput {
         listener = new FunctionCalculatorTextInputListener();
     }
 
+    //Einlesen der Werte aus der globalen FORMULAR Variable
     public static void read(){
 
         String[] text = FunctionCalculator.FORMULAR.split(" ");
@@ -26,6 +27,7 @@ public class FunctionCalculatorInput {
         if(text.length >= 6) FunctionCalculator.drawCurves = Boolean.parseBoolean(text[5]);
     }
 
+    //Listener Abfrage
     public static void render(){
         if(Gdx.input.justTouched()) Gdx.input.getTextInput(listener, "Input", "", "a b c d range");
     }

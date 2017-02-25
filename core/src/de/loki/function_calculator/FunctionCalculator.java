@@ -32,8 +32,8 @@ public class FunctionCalculator extends ApplicationAdapter {
 	@Override
 	public void create () {
 
-		//Variable die ausgelesen wird -  a b c d range complete?
-		FORMULAR = "0 1 0 0 10 true";
+		//Variable die ausgelesen wird -  a b c d e range complete?
+		FORMULAR = "0 0 1 0 0 10";
 		drawCurves = true;
 
 		ftfGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Calibri.ttf"));
@@ -92,10 +92,12 @@ public class FunctionCalculator extends ApplicationAdapter {
 		shapeRenderer.polyline(Graph.getGraph());
 
 		shapeRenderer.setColor(Color.GREEN);
-		if(Graph.b != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA1());
+		//Abfrage zum vermeiden von Funktionen ohne x
+		if(Graph.c != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA1());
 
 		shapeRenderer.setColor(Color.BLUE);
-		if(Graph.a != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA2());
+		//Abfrage zum vermeiden von Funktionen ohne x
+		if(Graph.b != 0 && drawCurves)shapeRenderer.polyline(Graph.getGraphA2());
 		shapeRenderer.end();
 
 		batch.begin();

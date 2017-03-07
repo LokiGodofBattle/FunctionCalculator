@@ -22,14 +22,15 @@ public class FunctionCalculatorInput {
         Graph.b = Float.parseFloat(text[1]);
         Graph.c = Float.parseFloat(text[2]);
         Graph.d = Float.parseFloat(text[3]);
-        if(text.length >= 5) Graph.range = Float.parseFloat(text[4]);
+        Graph.e = Float.parseFloat(text[4]);
+        if(text.length >= 6) Graph.range = Float.parseFloat(text[5]);
         else Graph.range = 5;
-        if(text.length >= 6) FunctionCalculator.drawCurves = Boolean.parseBoolean(text[5]);
+        if(text.length >= 7) FunctionCalculator.drawCurves = Boolean.parseBoolean(text[6]);
     }
 
     //Listener Abfrage
     public static void render(){
-        if(Gdx.input.justTouched()) Gdx.input.getTextInput(listener, "Input", "", "a b c d range");
+        if(Gdx.input.justTouched()) Gdx.input.getTextInput(listener, "Input", "", "a b c d e range drawAll(true|false)");
     }
 
 }

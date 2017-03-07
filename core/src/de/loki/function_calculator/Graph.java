@@ -11,6 +11,7 @@ public class Graph {
     public static float b;
     public static float c;
     public static float d;
+    public static float e;
 
     public static void init(){
         accuracy = 2;
@@ -20,6 +21,7 @@ public class Graph {
         b = 0;
         c = 0;
         d = 0;
+        e = 0;
     }
 
     public static float[] getGraph(){
@@ -31,7 +33,7 @@ public class Graph {
         for(int i = 0; i<vertices.length; i++){
             if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH);
             else{
-                vertices[i] = map((float) (a*Math.pow(x, 3) +b*Math.pow(x, 2) + c*x + d), -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH)  + FunctionCalculator.getSizeDifference()/2;
+                vertices[i] = map((float) (a*Math.pow(x, 4) +b*Math.pow(x, 3) + c*Math.pow(x, 2) + d*x + e), -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH)  + FunctionCalculator.getSizeDifference()/2;
                 x += range*2/(vertices.length/2);
              }
         }
@@ -48,7 +50,7 @@ public class Graph {
         for(int i = 0; i<vertices.length; i++){
             if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH);
             else{
-                vertices[i] = map((float) (a*3*Math.pow(x, 2) +b*2*x + c), -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH)  + FunctionCalculator.getSizeDifference()/2;
+                vertices[i] = map((float) (4*a*Math.pow(x, 3) + 3*b*Math.pow(x, 2) + 2*c*x + d), -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH)  + FunctionCalculator.getSizeDifference()/2;
                 x += range*2/(vertices.length/2);
             }
         }
@@ -65,7 +67,7 @@ public class Graph {
         for(int i = 0; i<vertices.length; i++){
             if(i%2==0) vertices[i] = map(x, -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH);
             else{
-                vertices[i] = map((a*6*x +b*2), -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH)  + FunctionCalculator.getSizeDifference()/2;
+                vertices[i] = map((float) (12*a*Math.pow(x, 2) + 6*b*x + 2*c), -range, range, 0, FunctionCalculator.VIEWPORT_WIDTH)  + FunctionCalculator.getSizeDifference()/2;
                 x += range*2/(vertices.length/2);
             }
         }
